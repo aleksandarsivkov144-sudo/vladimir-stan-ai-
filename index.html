@@ -1160,5 +1160,136 @@ Error generating stack: `+u.message+`
 })();
 </script>
 
+
+<style id="vs-marketing-studio-style">
+#vs-marketing-studio{position:fixed;inset:0;z-index:99990;display:none;background:rgba(8,14,24,.78);backdrop-filter:blur(7px);padding:14px;overflow:auto;font-family:Arial,sans-serif;color:#182333}
+#vs-marketing-studio.vms-open{display:block}
+#vs-marketing-studio .vms-panel{max-width:1080px;margin:18px auto;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 20px 70px #0008}
+#vs-marketing-studio .vms-head{background:linear-gradient(120deg,#142b45,#315879);color:#fff;padding:20px 24px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+#vs-marketing-studio h2{margin:0;font-size:24px}#vs-marketing-studio p{line-height:1.5}
+#vs-marketing-studio .vms-close{background:#ffffff22;color:#fff;border:1px solid #ffffff55;border-radius:10px;padding:9px 13px;font-size:18px}
+#vs-marketing-studio .vms-body{padding:20px;display:grid;grid-template-columns: minmax(0,1fr) minmax(280px,.8fr);gap:18px}
+#vs-marketing-studio .vms-card{border:1px solid #dce3ea;border-radius:14px;padding:15px;margin-bottom:14px;background:#fff}
+#vs-marketing-studio label{display:block;font-weight:700;margin:10px 0 5px}
+#vs-marketing-studio input,#vs-marketing-studio select,#vs-marketing-studio textarea{width:100%;box-sizing:border-box;border:1px solid #bdc9d5;border-radius:9px;padding:10px;font:inherit;background:#fff;color:#182333}
+#vs-marketing-studio textarea{min-height:150px;resize:vertical}
+#vs-marketing-studio button.vms-action{border:0;border-radius:9px;padding:10px 14px;background:#244c70;color:#fff;font-weight:700;margin:5px 5px 5px 0;cursor:pointer}
+#vs-marketing-studio button.vms-light{background:#e8eef4;color:#18334c}
+#vs-marketing-studio .vms-agents{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#vs-marketing-studio .vms-agent{background:#f2f6fa;border:1px solid #dce5ed;border-radius:10px;padding:10px;font-size:13px}
+#vs-marketing-studio .vms-agent b{display:block;margin-bottom:3px;color:#1d4668}
+#vs-marketing-studio .vms-note{font-size:12px;color:#5a6875}
+#vs-marketing-studio #vms-preview{width:100%;max-height:420px;object-fit:contain;background:#eef2f5;border-radius:10px}
+#vs-marketing-studio .vms-row{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:720px){#vs-marketing-studio .vms-body{grid-template-columns:1fr;padding:12px}#vs-marketing-studio .vms-head{padding:16px}#vs-marketing-studio h2{font-size:19px}#vs-marketing-studio .vms-agents{grid-template-columns:1fr}}
+#vs-marketing-launch{position:fixed;right:18px;bottom:88px;z-index:99989;background:#173c5b;color:#fff;border:2px solid #e0bd70;border-radius:30px;padding:13px 17px;font-weight:800;box-shadow:0 5px 22px #0005;cursor:pointer}
+</style>
+<button id="vs-marketing-launch">✦ AI Маркетинг студио</button>
+<section id="vs-marketing-studio" aria-label="AI Маркетинг студио">
+ <div class="vms-panel">
+  <header class="vms-head"><div><div style="font-size:11px;letter-spacing:2px;opacity:.8">VLADIMIR STAN · CREATIVE TEAM</div><h2>AI МАРКЕТИНГ СТУДИО</h2><div style="opacity:.85;font-size:13px">Създавай публикации, рекламни визии и кампании</div></div><button class="vms-close" id="vms-close" aria-label="Затвори">✕</button></header>
+  <div class="vms-body">
+   <div>
+    <div class="vms-card">
+     <h3 style="margin-top:0">1. Избери задача</h3>
+     <label for="vms-platform">Къде ще публикуваш?</label>
+     <select id="vms-platform"><option>Facebook</option><option>Instagram</option><option>TikTok</option><option>Instagram Reels</option><option>YouTube Shorts</option><option>LinkedIn</option><option>Уебсайт / блог</option><option>Прес съобщение</option></select>
+     <label for="vms-lang">Език</label><select id="vms-lang"><option value="bg">Български</option><option value="en">English</option><option value="fr">Français</option></select>
+     <label for="vms-topic">Тема / послание</label><input id="vms-topic" placeholder="Напр. Историята на купата от 1989 г.">
+     <label for="vms-details">Проверени факти за картината или събитието</label><textarea id="vms-details" placeholder="Добави автор, година, техника, размери, история. Остави празно, ако нямаш потвърдени данни."></textarea>
+     <div class="vms-row"><button class="vms-action" id="vms-generate">✦ Създай публикация</button><button class="vms-action vms-light" id="vms-hashtags"># Хаштагове</button></div>
+    </div>
+    <div class="vms-card">
+     <h3 style="margin-top:0">2. Текст за публикуване</h3>
+     <textarea id="vms-output" placeholder="Тук ще се появи готовият текст. Можеш да го редактираш."></textarea>
+     <div class="vms-row"><button class="vms-action" id="vms-copy">Копирай текста</button><button class="vms-action vms-light" id="vms-download-text">Изтегли .txt</button></div>
+    </div>
+    <div class="vms-card">
+     <h3 style="margin-top:0">3. Рекламна визия</h3>
+     <label for="vms-image">Качи снимка на картина</label><input id="vms-image" type="file" accept="image/*">
+     <label for="vms-poster-title">Заглавие върху плаката</label><input id="vms-poster-title" value="Изкуството на Владимир Стан">
+     <label for="vms-poster-sub">Подзаглавие</label><input id="vms-poster-sub" value="Открийте творчеството и архива">
+     <img id="vms-preview" alt="Преглед на рекламната визия" style="display:none;margin-top:10px">
+     <div class="vms-row"><button class="vms-action" id="vms-make-poster">Създай плакат</button><button class="vms-action vms-light" id="vms-download-poster" disabled>Изтегли PNG</button></div>
+     <div class="vms-note">Създава вертикална визия 1080 × 1350 px с избраната от теб картина. Качвай само изображения, за които имаш право на използване.</div>
+    </div>
+   </div>
+   <aside>
+    <div class="vms-card"><h3 style="margin-top:0">Екип от специализирани агенти</h3><div class="vms-agents">
+     <div class="vms-agent"><b>🎨 Арт директор</b>Концепции и визуална посока</div>
+     <div class="vms-agent"><b>✍️ Копирайтър</b>Постове, заглавия и призиви</div>
+     <div class="vms-agent"><b>🌍 Преводач</b>Български, английски, френски</div>
+     <div class="vms-agent"><b># SEO и хаштагове</b>Ключови думи и откриваемост</div>
+     <div class="vms-agent"><b>📣 Кампаниен стратег</b>Идеи за серии и кампании</div>
+     <div class="vms-agent"><b>📰 PR редактор</b>Прес съобщения и новини</div>
+     <div class="vms-agent"><b>🎬 Видео сценарист</b>Сценарии за Reels и Shorts</div>
+     <div class="vms-agent"><b>🗓️ Планировчик</b>Календар за публикации</div>
+     <div class="vms-agent"><b>💬 Community мениджър</b>Отговори на коментари</div>
+     <div class="vms-agent"><b>📊 Анализатор</b>Шаблон за отчет на резултати</div>
+     <div class="vms-agent"><b>🖼️ Галериен куратор</b>Подбор и представяне на творби</div>
+     <div class="vms-agent"><b>🔎 Факт чекър</b>Отделя потвърденото от непотвърденото</div>
+    </div></div>
+    <div class="vms-card"><h3 style="margin-top:0">Бързи инструменти</h3>
+     <button class="vms-action vms-light" id="vms-video">🎬 Сценарий за кратко видео</button>
+     <button class="vms-action vms-light" id="vms-calendar">🗓️ Седмичен календар</button>
+     <button class="vms-action vms-light" id="vms-pr">📰 Прес съобщение</button>
+     <button class="vms-action vms-light" id="vms-replies">💬 Отговори на коментари</button>
+     <p class="vms-note">Инструментите създават редактирани от теб чернови. Публикуването и статистиките не се изпращат автоматично към социалните мрежи.</p>
+    </div>
+   </aside>
+  </div>
+ </div>
+</section>
+<script id="vs-marketing-studio-script">
+(()=>{
+ const $=id=>document.getElementById(id);
+ const root=$('vs-marketing-studio'); if(!root||root.dataset.ready)return; root.dataset.ready='1';
+ let imageData=null, posterBlob=null;
+ $('vs-marketing-launch').addEventListener('click',()=>root.classList.add('vms-open'));
+ $('vms-close').addEventListener('click',()=>root.classList.remove('vms-open'));
+ root.addEventListener('click',e=>{if(e.target===root)root.classList.remove('vms-open')});
+ const lang=()=> $('vms-lang').value, platform=()=> $('vms-platform').value;
+ const topic=()=> $('vms-topic').value.trim()||'творчеството на Владимир Стан';
+ const facts=()=> $('vms-details').value.trim();
+ const tags='#VladimirStan #Art #FineArt #Painting #ArtArchive #Изкуство #ВладимирСтан #Галерия';
+ function makePost(){
+  const t=topic(), f=facts(), p=platform(), l=lang();
+  let out='';
+  if(l==='bg'){
+   out=`Открийте ${t}.\n\nТворчеството на Владимир Стан ни кани да погледнем по-внимателно към изкуството, историята и детайлите.\n${f?'\n'+f+'\n':'\nРазгледайте галерията и архива, за да научите повече. Неизвестните подробности оставяме отворени за проверка.\n'}\nЗапознайте се с произведенията в онлайн архива на Владимир Стан.\n\n${tags}\n\n${p==='TikTok'||p.includes('Reels')||p.includes('Shorts')?'Идея за видео: започнете с близък кадър на детайл, покажете цялата творба и завършете с името на художника и адреса на сайта.':''}`;
+  } else if(l==='en'){
+   out=`Discover ${t}.\n\nThe work of Vladimir Stan invites us to look more closely at art, history and detail.\n${f?'\n'+f+'\n':'\nExplore the online gallery and archive to learn more. Details that have not been verified are intentionally left open.\n'}\nDiscover the works in the Vladimir Stan online archive.\n\n#VladimirStan #Art #FineArt #Painting #ArtArchive`;
+  } else {
+   out=`Découvrez ${t}.\n\nL’œuvre de Vladimir Stan nous invite à observer de plus près l’art, l’histoire et les détails.\n${f?'\n'+f+'\n':'\nExplorez la galerie et les archives en ligne pour en savoir plus. Les informations non vérifiées restent à confirmer.\n'}\nDécouvrez les œuvres dans les archives en ligne de Vladimir Stan.\n\n#VladimirStan #Art #Peinture #BeauxArts #Archives`;
+  }
+  $('vms-output').value=out;
+ }
+ $('vms-generate').onclick=makePost;
+ $('vms-hashtags').onclick=()=>{$('vms-output').value=tags+' #ArtHistory #Artist #Exhibition #Culture';};
+ $('vms-copy').onclick=async()=>{try{await navigator.clipboard.writeText($('vms-output').value);$('vms-copy').textContent='Копирано ✓';}catch(e){$('vms-output').select();document.execCommand('copy');$('vms-copy').textContent='Копирано ✓';}};
+ $('vms-download-text').onclick=()=>{const b=new Blob([$('vms-output').value],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='vladimir-stan-social-post.txt';a.click();URL.revokeObjectURL(a.href);};
+ $('vms-image').onchange=e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{imageData=r.result;$('vms-preview').src=imageData;$('vms-preview').style.display='block';};r.readAsDataURL(f);};
+ $('vms-make-poster').onclick=()=>{
+  if(!imageData){alert('Първо качи снимка на картина.');return;}
+  const im=new Image();im.onload=()=>{
+   const c=document.createElement('canvas');c.width=1080;c.height=1350;const x=c.getContext('2d');
+   x.fillStyle='#10283e';x.fillRect(0,0,c.width,c.height);
+   const maxW=980,maxH=1040,scale=Math.min(maxW/im.width,maxH/im.height);const w=im.width*scale,h=im.height*scale;
+   x.fillStyle='#fff';x.fillRect((1080-w)/2,45+(1040-h)/2,w,h);x.drawImage(im,(1080-w)/2,45+(1040-h)/2,w,h);
+   x.fillStyle='#e7c77d';x.fillRect(0,1120,1080,5);
+   x.fillStyle='#fff';x.textAlign='center';x.font='bold 42px Georgia';x.fillText($('vms-poster-title').value.slice(0,48),540,1190);
+   x.font='26px Arial';x.fillText($('vms-poster-sub').value.slice(0,65),540,1245);
+   x.font='20px Arial';x.fillStyle='#d7e1ea';x.fillText('VLADIMIR STAN · ONLINE ARCHIVE',540,1305);
+   c.toBlob(b=>{posterBlob=b;$('vms-preview').src=URL.createObjectURL(b);$('vms-download-poster').disabled=false;},'image/png');
+  };im.src=imageData;
+ };
+ $('vms-download-poster').onclick=()=>{if(!posterBlob)return;const a=document.createElement('a');a.href=URL.createObjectURL(posterBlob);a.download='vladimir-stan-poster.png';a.click();URL.revokeObjectURL(a.href);};
+ $('vms-video').onclick=()=>{$('vms-output').value=`СЦЕНАРИЙ ЗА КРАТКО ВИДЕО (20–30 сек.)\n\n0–3 сек.: силен детайл от творбата + надпис „Открийте ${topic()}“.\n3–10 сек.: плавно покажете цялата картина.\n10–18 сек.: покажете проверените факти: ${facts()||'добавете година, техника и размери само ако са потвърдени'}.\n18–25 сек.: покана да разгледат онлайн галерията на Владимир Стан.\nФинал: име на художника и адрес на сайта.\n\nПодгответе собствено видео и използвайте музика, за която имате права.`;};
+ $('vms-calendar').onclick=()=>{$('vms-output').value=`СЕДМИЧЕН ПЛАН ЗА ПУБЛИКАЦИИ\n\nПонеделник: Представяне на една картина.\nВторник: Детайл отблизо + кратък факт.\nСряда: История от архива (само проверени данни).\nЧетвъртък: Кратко видео/Reel.\nПетък: Представяне на творчески процес или техника, ако е документирана.\nСъбота: Въпрос към аудиторията за любима творба.\nНеделя: Седмичен преглед и покана към онлайн галерията.\n\nПреди публикуване проверете фактите, правата за изображенията и линковете.`;};
+ $('vms-pr').onclick=()=>{$('vms-output').value=`ПРЕС СЪОБЩЕНИЕ\n\nЗаглавие: Онлайн архив и галерия представят творчеството на Владимир Стан\n\n${topic()}\n\nОнлайн проектът събира подбрани произведения и архивни материали, за да направи творчеството по-достъпно за публика.\n\n${facts()||'[Добавете тук потвърдени факти, дата и източник.]'}\n\nЗа повече информация: посетете онлайн архива на Владимир Стан.\n\nРедакторска бележка: попълнете контакт, дата и проверени факти преди изпращане.`;};
+ $('vms-replies').onclick=()=>{$('vms-output').value=`ШАБЛОНИ ЗА ОТГОВОРИ НА КОМЕНТАРИ\n\nБлагодарим ви, че разгледахте творбите на Владимир Стан!\n\nРадваме се, че тази картина ви е направила впечатление.\n\nБлагодарим за въпроса. Ще проверим архивните сведения, преди да потвърдим подробностите.\n\nМожете да разгледате още произведения в онлайн галерията.`;};
+})();
+</script>
+
 </body>
 </html>
